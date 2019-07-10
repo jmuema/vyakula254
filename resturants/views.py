@@ -50,3 +50,19 @@ class RestaurantListView(ListView):
             post.likes.add(request.user)
         return redirect('home')
 
+class RestaurantDetailView(DetailView):
+    queryset = Restaurant.objects.all()
+
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        comment = request.POST.get('comment')
+        c_slug = request.POST.get('slug')
+        if comment:
+            if c_slug:
+                post = get_object_or_404(Restaurant, slug=c_slug)
+                comment = Comment.objects.create(
+                    user=request.user, post=post, text=comment)
+                comment.save()
+                return redirect('detail', c_slug)
+        return redirect('detail', c_slug)
+
