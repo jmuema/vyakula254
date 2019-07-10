@@ -66,3 +66,15 @@ class RestaurantDetailView(DetailView):
                 return redirect('detail', c_slug)
         return redirect('detail', c_slug)
 
+class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'restaurants/restaurant_form.html'
+    form_class = RestaurantCreateForm
+    success_url = reverse_lazy('my_posts')
+    success_message = "Post Created Successfully"
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        return super().form_valid(form)
+
+
