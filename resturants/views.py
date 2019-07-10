@@ -14,7 +14,7 @@ from django.contrib import messages
 class RestaurantListView(ListView):
     queryset = Restaurant.objects.all()
     paginate_by = 6
-    template_name = 'restaurants/restaurant_list.html'
+    template_name = 'resturants/restaurant_list.html'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -65,7 +65,7 @@ class RestaurantDetailView(DetailView):
 
 
 class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    template_name = 'restaurants/restaurant_form.html'
+    template_name = 'resturants/restaurant_form.html'
     form_class = RestaurantCreateForm
     success_url = reverse_lazy('my_posts')
     success_message = "Post Created Successfully"
@@ -78,7 +78,7 @@ class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class RestaurantUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = RestaurantCreateForm
-    template_name = 'restaurants/restaurant_form.html'
+    template_name = 'resturants/restaurant_form.html'
     success_url = reverse_lazy('my_posts')
     success_message = "Post Updated Successfully"
 
@@ -99,7 +99,7 @@ class RestaurantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
 
 class MyPostView(LoginRequiredMixin, ListView):
-    template_name = 'restaurants/my_posts.html'
+    template_name = 'resturants/my_posts.html'
 
     def get_queryset(self):
         return Restaurant.objects.filter(user=self.request.user)

@@ -6,7 +6,7 @@ from django.utils.text import slugify
 class Restaurant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
-    image = models.ImageField(upload_to='restaurants/')
+    image = models.ImageField(upload_to='resturants/')
     categories = models.CharField(max_length=120)
     location = models.CharField(max_length=120)
     price = models.IntegerField()

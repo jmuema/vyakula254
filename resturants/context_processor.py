@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from restaurants.models import Restaurant
+from resturants.models import Restaurant
 
 def categories(request):
     cat_list = []
