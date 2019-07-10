@@ -14,7 +14,7 @@ from django.contrib import messages
 class RestaurantListView(ListView):
     queryset = Restaurant.objects.all()
     paginate_by = 6
-    template_name = 'restaurants/restaurant_list.html'
+    template_name = 'templates/resturants/resturant_list.html'
 
     def get_queryset(self):
         queryset = super().get_queryset()
