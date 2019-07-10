@@ -21,3 +21,10 @@ class RegisterView(SuccessMessageMixin, CreateView):
     form_class = RegisterForm
     success_message = "Account Created Successfully"
     success_url = reverse_lazy('login')
+
+class ProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    form_class = RegisterForm
+    template_name = 'registration/profile.html'
+    queryset = User.objects.all()
+    success_url = reverse_lazy('my_posts')
+    success_message = "Profile Updated Successfully"
