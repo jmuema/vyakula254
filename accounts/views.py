@@ -16,3 +16,8 @@ class LogoutView(View):
         logout(request)
         return redirect('home')
 
+class RegisterView(SuccessMessageMixin, CreateView):
+    template_name = 'registration/register.html'
+    form_class = RegisterForm
+    success_message = "Account Created Successfully"
+    success_url = reverse_lazy('login')
