@@ -65,7 +65,7 @@ class RestaurantDetailView(DetailView):
 
 
 class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    template_name = 'resturants/restaurant_form.html'
+    template_name = 'resturants/resturant_form.html'
     form_class = RestaurantCreateForm
     success_url = reverse_lazy('my_posts')
     success_message = "Post Created Successfully"
@@ -78,7 +78,7 @@ class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class RestaurantUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = RestaurantCreateForm
-    template_name = 'resturants/restaurant_form.html'
+    template_name = 'resturants/resturant_form.html'
     success_url = reverse_lazy('my_posts')
     success_message = "Post Updated Successfully"
 
