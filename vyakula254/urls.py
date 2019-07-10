@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.conf.urls import url, include
+from django.urls import path, include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('resturants.urls')),
-    url(r'^accounts/', include('accounts.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('restaurants.urls')),
+    path('accounts/', include('accounts.urls')),
 
 ]
 

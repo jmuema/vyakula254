@@ -1,13 +1,13 @@
-from django.conf.urls import url 
+from django.urls import path
 from .views import RestaurantListView, RestaurantDetailView,\
     RestaurantCreateView, RestaurantUpdateView, RestaurantDeleteView,\
     MyPostView
 
 urlpatterns = [
-    url(r'', RestaurantListView.as_view(), name='home'),
-    url(r'^create/', RestaurantCreateView.as_view(), name='create'),
-    url(r'^<slug:slug>/', RestaurantDetailView.as_view(), name='detail'),
-    url(r'^<slug:slug>/update', RestaurantUpdateView.as_view(), name='update'),
-    url(r'^<slug:slug>/delete', RestaurantDeleteView.as_view(), name='delete'),
-    url(r'^dashboard/myposts/', MyPostView.as_view(), name='my_posts'),
+    path('', RestaurantListView.as_view(), name='home'),
+    path('create/', RestaurantCreateView.as_view(), name='create'),
+    path('<slug:slug>/', RestaurantDetailView.as_view(), name='detail'),
+    path('<slug:slug>/update', RestaurantUpdateView.as_view(), name='update'),
+    path('<slug:slug>/delete', RestaurantDeleteView.as_view(), name='delete'),
+    path('dashboard/myposts/', MyPostView.as_view(), name='my_posts'),
 ]

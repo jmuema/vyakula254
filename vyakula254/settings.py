@@ -11,11 +11,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import dj_database_url
-from decouple import config,Csv
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+# SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -62,14 +61,16 @@ ROOT_URLCONF = 'vyakula254.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(SETTINGS_PATH, 'templates'), os.path.join(BASE_DIR, 'vyakula254', 'templates', 'vyakula254'),],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'restaurants.context_processor.categories',
+                'restaurants.context_processor.user_liked_posts',
+                'restaurants.context_processor.recent_posts',
             ],
         },
     },
@@ -138,10 +139,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# LOGIN_REDIRECT_URL = 'my_posts'
-# TEMPLATE_DIRS = (
-#     os.path.join(SETTINGS_PATH, 'templates'),
-# )
+LOGIN_REDIRECT_URL = 'my_posts'
 
 
 # Email configuration
