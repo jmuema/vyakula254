@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import RestaurantCreateForm
@@ -12,8 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
-
-# Create your views here.
 
 class RestaurantListView(ListView):
     queryset = Restaurant.objects.all()
@@ -50,6 +46,7 @@ class RestaurantListView(ListView):
             post.likes.add(request.user)
         return redirect('home')
 
+
 class RestaurantDetailView(DetailView):
     queryset = Restaurant.objects.all()
 
@@ -66,6 +63,7 @@ class RestaurantDetailView(DetailView):
                 return redirect('detail', c_slug)
         return redirect('detail', c_slug)
 
+
 class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'restaurants/restaurant_form.html'
     form_class = RestaurantCreateForm
@@ -78,3 +76,30 @@ class RestaurantCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
+class RestaurantUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    form_class = RestaurantCreateForm
+    template_name = 'restaurants/restaurant_form.html'
+    success_url = reverse_lazy('my_posts')
+    success_message = "Post Updated Successfully"
+
+    def get_queryset(self):
+        return Restaurant.objects.filter(user=self.request.user)
+
+
+class RestaurantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    success_url = reverse_lazy('my_posts')
+    success_message = "Post Deleted Successfully"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Restaurant.objects.filter(user=self.request.user)
+
+
+class MyPostView(LoginRequiredMixin, ListView):
+    template_name = 'restaurants/my_posts.html'
+
+    def get_queryset(self):
+        return Restaurant.objects.filter(user=self.request.user)
