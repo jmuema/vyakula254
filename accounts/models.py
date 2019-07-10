@@ -12,3 +12,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+@receiver(post_save, sender=User)
+def user_created(sender, instance, created, *args, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    else:
+        instance.profile.save()
