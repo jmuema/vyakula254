@@ -25,4 +25,27 @@ class Resturant(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateField(auto_now=True)
   is_active = models.BooleanField(default=True)
-  
+
+  def __str__(self):
+        return self.title
+
+  def likes_count(self):
+        return self.likes.count()
+
+  def get_categories(self):
+        cats = self.categories.split(',')
+        return cats
+
+  def save(self, *args, **kwargs):
+        if self.slug:  # edit
+            if slugify(self.title) != self.slug:
+                self.slug = generate_unique_slug(Restaurant, self.ti
+        else:  # create
+            self.slug = generate_unique_slug(Restaurant, self.title)
+        super().save(*args, **kwargs)
+
+  def delete(self,*args, **kwargs):
+        self.image.delete()
+        super().delete(*args, **kwargs)
+
+
