@@ -37,16 +37,16 @@ class RestaurantListView(ListView):
             queryset = queryset.filter(user__username=author)
         return queryset
 
-    # @method_decorator(login_required)
-    # def post(self, request, *args, **kwargs):
-    #     post_id = request.POST.get('unlike')
-    #     post_id2 = request.POST.get('like')
-    #     if post_id is not None:
-    #         post = get_object_or_404(Restaurant, id=post_id)
-    #         post.likes.remove(request.user)
-    #     if post_id2 is not None:
-    #         post_id2 = request.POST.get('like')
-    #         post = get_object_or_404(Restaurant, id=post_id2)
-    #         post.likes.add(request.user)
-    #     return redirect('home')
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        post_id = request.POST.get('unlike')
+        post_id2 = request.POST.get('like')
+        if post_id is not None:
+            post = get_object_or_404(Restaurant, id=post_id)
+            post.likes.remove(request.user)
+        if post_id2 is not None:
+            post_id2 = request.POST.get('like')
+            post = get_object_or_404(Restaurant, id=post_id2)
+            post.likes.add(request.user)
+        return redirect('home')
 
