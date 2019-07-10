@@ -10,3 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
 from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
+
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('home')
+
