@@ -28,3 +28,13 @@ class ProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     queryset = User.objects.all()
     success_url = reverse_lazy('my_posts')
     success_message = "Profile Updated Successfully"
+
+class ImageUpdateView(LoginRequiredMixin, TemplateView):
+    template_name = 'registration/profile_picture.html'
+
+    def post(self, request, *args, **kwargs):
+        img = request.FILES.get('image')
+        user = get_object_or_404(User, username=request.user.username)
+        user.profile.image = img
+        user.save()
+        return redirect('profile', request.user.id)
