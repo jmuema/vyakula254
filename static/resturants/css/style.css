@@ -3,6 +3,7 @@ body {
 }
 .navbar-brand{
     font-family: 'Pacifico',cursive;
+    color: red,
 }
 .user-icons{
     font-size: 25px;
