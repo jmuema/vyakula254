@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'resturants.apps.ResturantsConfig',
     'accounts.apps.AccountsConfig',
+    'bootstrap4',
     
 ]
 
