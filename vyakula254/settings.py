@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'resturants.apps.ResturantsConfig',
     'accounts.apps.AccountsConfig',
     'bootstrap4',
+    'rest_framework',
     
 ]
 
