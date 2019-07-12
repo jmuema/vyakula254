@@ -1,6 +1,9 @@
 @import url('widgets.css');
 
 /* FORM ROWS */
+body{
+    background-image: url("/media/462860.jpg")
+}
 
 .form-row {
     overflow: hidden;

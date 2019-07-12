@@ -25,3 +25,6 @@ ul.actionlist li {
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
 }
+body{
+    background-image: url("/media/462860.jpg")
+}

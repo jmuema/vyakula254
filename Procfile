@@ -1,0 +1,1 @@
+web: gunicorn vyakula254.wsgi
