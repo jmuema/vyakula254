@@ -9,7 +9,7 @@ django-location-field==2.0.3
 django-material==0.5.1
 django-registration==2.4.1
 gunicorn==19.9.0
-Pillow==5.4.1
+Pillow==8.1.1
 psycopg2==2.7.7
 psycopg2-binary==2.7.5
 python-decouple==3.1
